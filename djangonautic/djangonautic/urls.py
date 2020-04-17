@@ -19,6 +19,8 @@ from django.urls import path
 from django.urls import include
 # importing Views that'll be referenced from views.py
 from . import views
+# for working with static files in local development, NEVER PRODUCTION!
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 # Remember: Django runs through urls in order until it hits a match, so you want the most general route i.e. the '' route for the homepage, to be last
 urlpatterns = [
@@ -30,3 +32,6 @@ urlpatterns = [
     # any urls defined in articles app will be pre-appended with articles/
     path('articles/', include('articles.urls'))
 ]
+
+# function will first check to see that we are in debug mode (should only be true in development) then append itself
+urlpatterns += staticfiles_urlpatterns()

@@ -19,7 +19,7 @@
 
 ---
 ## 4. HTML templates
-- Remember: add **"templates"** to the `TEMPLATE DIRS` array in `settings.py` so that Djamgo knows to look in the `templates/` directory of each app for our Templates
+- Remember: add `os.path.join(BASE_DIR, 'templates')` to the `TEMPLATE DIRS` array in `settings.py` so that Djamgo knows to look in the `templates/` directory of each app for our Templates
 
 ---
 ## 5. Apps
@@ -98,5 +98,42 @@
     In [8]: # query for all again                                                                              
     In [9]: Article.objects.all()                                                                              
     Out[9]: <QuerySet [<Article: hello, world>, <Article: Django Rules!>]>
-    In [10]: quit()                                                        
+    In [10]: quit()                                                       
     ```
+
+---
+## 9. Admin
+- The Django Admin area is a area for site admins to control the content and accessibility of their website
+    - It comes baked in and acts as a CMS (content management system)
+    - Admins can create instances of models, create users, and other such tasks
+- To get started you must first create a superuser using the command: `python manage.py createsuperuser`, and enter the information you're prompted for (e-mail address is optional)
+    - for this project using default username and `admin_pass` as password
+    - to test, run the server, navigate to `localhost:8000/admin` and try out credentials
+    - superuser automatically granted "staff status"
+- To make a Model accessible in the Admin area, must register the Model in the `admin.py` file of the root app (**djangonautic**)
+- In the Admin area you can click on each registered Model to view existing instances and add new ones
+
+---
+## 10. Template Tags
+- In Django, a template is a text file that can generate any text-based format (HTML, XML, CSV, etc.)
+- A template contains variables, which get replaced with values when the template is evaluated, and tags, which control the logic of the template.
+
+---
+## 11. Model Methods
+- Within each Model class, you may define functions (methods) just like you would in any python class
+
+---
+## 12. Static Files and Images
+- Files like images, CSS files, and JavaScript scripts that can be serve to the client via the browser are considered static files
+- In production, these files would likely be stored by a cloud service like AWS S3 for efficiency, but for local development we can store them locally
+- Note that the way static files are configured to be served in development is often very insecure and, as such, should be changed before the application is put into production
+
+---
+## 13. Extending (HTML) Templates
+- We may want to make a base HTML template and extend it when you want multiple HTML templates to have some components in common
+    - For example, we may want all of our HTML templates to have the same head and footer
+    - See the `base_layout.html` in the root folder's `template/` folder
+
+---
+## 14. URL parameters
+- While some url route names maybe static, at other times you may want them to be more dynamic, including variable fields
