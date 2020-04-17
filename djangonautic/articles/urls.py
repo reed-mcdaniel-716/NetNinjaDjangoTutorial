@@ -13,20 +13,13 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.contrib import admin
 from django.urls import path
-# use include to add urls from other applications
-from django.urls import include
 # importing Views that'll be referenced from views.py
 from . import views
 
 # Remember: Django runs through urls in order until it hits a match, so you want the most general route i.e. the '' route for the homepage, to be last
 urlpatterns = [
-    path('admin/', admin.site.urls),
     # parameters are 1. the route string and 2. the view handling the route
-    path('about/', views.about),
-    # '' for the homepage
-    path('', views.homepage),
-    # any urls defined in articles app will be pre-appended with articles/
-    path('articles/', include('articles.urls'))
+    # will be pre-appended with articles/ based on specification in root app's urls.py (see djangonautic/urls.py)
+    path('', views.article_list),
 ]
