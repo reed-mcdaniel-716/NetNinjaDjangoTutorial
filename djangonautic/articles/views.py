@@ -15,6 +15,10 @@ def article_list(request):
     return render(request=request, template_name='articles/article_list.html', context={'articles': articles})
 
 # view for a single article with all of its details
-# takes in request as first srgument and a slug as the second
+# takes in request as first argument and a slug as the second
 def article_detail(request, slug):
-    return HttpResponse(slug)
+    # return HttpResponse(slug)
+    # want to query the database for an article based on the provided slug
+    # we will then use that aricle's information to fill in a template to be returned by this view
+    article= Article.objects.get(slug=slug)
+    return render(request, 'articles/article_detail.html', {'article': article})

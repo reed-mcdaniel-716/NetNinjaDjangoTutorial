@@ -19,11 +19,10 @@ from . import views
 
 # want to namespace our urls so that the names given to them here can be repeated in other apps without confusion when we need to use them in templates
 
-app_name = 'articles'
-# Remember: Django runs through urls in order until it hits a match, so you want the most general route i.e. the '' route for the homepage, to be last
+app_name = 'accounts'
+
 urlpatterns = [
     # parameters are 1. the route string,  2. the view handling the route, and 3. the name for the given URL
-    # will be pre-appended with articles/ based on specification in root app's urls.py (see djangonautic/urls.py)
-    path('', views.article_list, name="list"),
-    path('<slug:slug>/', views.article_detail, name="detail")
+    # pre-appended with /accounts/ in base app urls.py
+    path('signup/', views.signup_view, name="signup")
 ]

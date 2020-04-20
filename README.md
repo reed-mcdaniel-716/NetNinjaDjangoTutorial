@@ -137,3 +137,33 @@
 ---
 ## 14. URL parameters
 - While some url route names maybe static, at other times you may want them to be more dynamic, including variable fields
+    - Check out `articles/urls.py` for examples
+
+---
+## 15. Named URLs
+- We want to be able to generate different URLs for our link anchor tags in our HTML templates dynamically rather than hardcoding them in
+- For our blog, we want the title tags associated with each snippet on the articles page to navigate to the full-test article associated with that title, something that must be done dynamically as we don't know ahead of time which title will be clicked
+- URLs can also be namespaced so that the same URL name can be used in different apps without ambiguity being an issue
+
+---
+## 16. Article Detail Template
+- Creating the HTML template for article details
+
+---
+## 17. Uploading Media
+- To be able to upload media to a Model (in our case an Article instance), there are a few steps that must be taken
+    1. Add a `MEDIA_URL` variable in the `setting.py` file of the root app (**djangonautic**) and set it to the url where the media can be found
+    2. Add the `MEDIA_ROOT` variable in the `setting.py` file of the root app (**djangonautic**) and set it to the directory where the uploaded media should be placed
+    3. add to the `urlpatterns` in `urls.py` of the root app (after importing necessary packages and files):
+        `urlpatterns += static(prefix= settings.MEDIA_URL, document_root= settings.MEDIA_ROOT)`
+    4. Add the appropriate field to the Model that will be taking in the uploaded media (Article in our case) (don't forget migration after Model update)
+
+---
+## 18. Accounts App
+- We want new users to be able to sign up and use our blog application themselves, without the admin having to do this manually for each user who wants one
+    - A lot of the functionality for this is already provided by
+- We will create the accounts app to handle our user accounts, including authentication
+    - done with the command `python manage.py startapp accounts`
+    - don't forget to:
+        - register new app in `INSTALLED_APPS` of the root app's `settings.py`
+        - add `urls.py` to `accounts/` app directory

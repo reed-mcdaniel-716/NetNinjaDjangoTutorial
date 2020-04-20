@@ -21,6 +21,10 @@ from django.urls import include
 from . import views
 # for working with static files in local development, NEVER PRODUCTION!
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+# for working with uploading media
+from django.conf.urls.static import static
+# importing properties in the settings.py file
+from django.conf import settings
 
 # Remember: Django runs through urls in order until it hits a match, so you want the most general route i.e. the '' route for the homepage, to be last
 urlpatterns = [
@@ -30,8 +34,14 @@ urlpatterns = [
     # '' for the homepage
     path('', views.homepage),
     # any urls defined in articles app will be pre-appended with articles/
-    path('articles/', include('articles.urls'))
+    path('articles/', include('articles.urls', namespace='aricles')),
+    path('accounts/', include('accounts.urls', namespace='accounts'))
 ]
 
+# url for static files
 # function will first check to see that we are in debug mode (should only be true in development) then append itself
 urlpatterns += staticfiles_urlpatterns()
+
+# url for uploading media
+# static funtion takes as arguments 1. prefix string for the url route and 2. document_root which is where uploaded media will go
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

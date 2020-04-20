@@ -6,13 +6,13 @@ import re, string
 # extends the Django models.Model class
 class Article(models.Model):
     # see documentation for all of the different field types supported
-    title= models.CharField(max_length=100)
+    title = models.CharField(max_length=100)
     # the part of a URL that identifies a page in human-readable keywords is sometimes refered to as the slug (Wikipedia)
-    slug= models.SlugField()
-    body= models.TextField()
+    slug = models.SlugField()
+    body = models.TextField()
     # auto_now_a=True automatically sets the field to "now" when the object is first created
-    date= models.DateTimeField(auto_now_add=True)
-    # add thumbnail later
+    date = models.DateTimeField(auto_now_add=True)
+    thumb = models.ImageField(default='default.png', blank=True)
     # add author later
 
     # string representation

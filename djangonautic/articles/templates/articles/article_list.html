@@ -7,7 +7,10 @@
         <!-- template tag utilizing data passed in by View -->
         {% for article in articles%}
             <div class="article">
-                <h2><a href="#">{{article.title}}</a></h2>
+                <!-- using template tag to get url based on the name parameter assigned when creating the urls -->
+                <!-- passing in the aricle slug as the url needs that parameter to link to the correct article -->
+                <!-- getting detail url from articles namespace -->
+                <h2><a href="{% url 'articles:detail' slug=article.slug %}">{{article.title}}</a></h2>
                 <p>{{article.snippet}}</p>
                 <p>{{article.date}}</p>
             </div>
