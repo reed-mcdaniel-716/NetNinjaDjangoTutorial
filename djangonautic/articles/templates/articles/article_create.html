@@ -2,5 +2,11 @@
 {% block content %}
     <div class="create-article">
         <h2>Create an Awesome New Article!</h2>
+        <!-- add on encryption typee since we are uploading an image with this form -->
+        <form class="site-form" action="{% url 'articles:create' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form }}
+            <input type="submit" name="article_create_form" value="Create">
+        </form>
     </div>
 {% endblock %}
