@@ -24,5 +24,7 @@ app_name = 'accounts'
 urlpatterns = [
     # parameters are 1. the route string,  2. the view handling the route, and 3. the name for the given URL
     # pre-appended with /accounts/ in base app urls.py
-    path('signup/', views.signup_view, name="signup")
+    path('signup/', views.signup_view, name="signup"),
+    path('login/', views.login_view, name="login"),
+    path('logout/', views.logout_view, name="logout")
 ]

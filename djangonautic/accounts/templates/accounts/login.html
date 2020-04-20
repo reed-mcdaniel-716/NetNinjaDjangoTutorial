@@ -1,0 +1,18 @@
+<!-- extending base layout template -->
+{% extends 'base_layout.html' %}
+{% block content %}
+    <h1>Login</h1>
+    <!-- wrapping provided form in form tag -->
+    <!-- note that the action is the same as the url bringing us to this form -->
+    <form class="site-form" action="{% url 'accounts:login' %}" method="post">
+        <!-- this let's the app know that this post request is safe because it is coming from our application, not externally (bad actors) -->
+        {% csrf_token %}
+        {{ form }}
+        <!-- checking for the 'next' query string paraneter existence in request.GET -->
+        {% if request.GET.next %}
+            <!-- input captures value of request.GET.next so that it is sent along with the post request when user hits submit -->
+            <input type="hidden" name="next" value="{{ request.GET.next }}">
+        {% endif %}
+        <input type="submit" name="login_submit" value="Login">
+    </form>
+{% endblock %}

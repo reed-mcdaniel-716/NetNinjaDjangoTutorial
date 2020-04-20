@@ -167,3 +167,48 @@
     - don't forget to:
         - register new app in `INSTALLED_APPS` of the root app's `settings.py`
         - add `urls.py` to `accounts/` app directory
+
+---
+## 19. User Creation Form
+- You could do the new user form template and subsequent authentication on the server yourself, but there is no need as Django provides a lot of built-in functionality for this
+- We can use the user creation form provided buy Django, which has a lot of cool features like:
+    - form hints on the front-end
+    - back-end validation to see if a user already exists or is a password doesn't meet minimum criteria
+- Take some time to inspect the form in the browser
+- The same url will handle both `POST` and `GET` requests for signup, explored in the next section
+
+---
+## 20. Saving Users
+- As the `GET` and `POST` requests are both sent to the same URL, the same function (`signup_view()`) is fired for both
+    - As a result, we must check the `request` argument method, and handle it accordingly
+
+---
+## 21. Login Form
+- Much like for user creation, Django provides built-ins for creating user login forms as well
+
+---
+## 22. Logging Users In
+- Now that we have forms both for user creation and for logging in, we need to handle the logic behind actually logging a user in when they provide valid credentials
+
+---
+## 23. Logging Users Out
+- Now that we can log users in, we must also be able to log users out
+
+---
+## 24. Requiring Login
+- We want to be able to protect certain pages by requiring login
+    - For our case, we want to only allow logged in users to be able to add new articles
+    - In the next section we will create a form for creating new articles (leave as placeholder for now)
+
+---
+## 25. Redirecting After Login
+- We are now able to protect pages by requiring login, and can redirect users to login if they haven't already
+- But now, once a user logs in, we want them to be directed back to the page they were sent to login from
+    - In our case, if you were denied entry to the article creation page because you weren't logged in and were subsequently redirected to the login page, and you login, you should be redirected to the article creation page from which you originally came
+    - When this happens, and you land on the login page, the url has an additional query string with the `next` parameter, indicating where the user probably wants to go next after login
+        - We can use this information, accessible through our `request` object in the `GET` property, to inform our redirect after login
+
+---
+## 26. Model Forms
+- Now that we've login-protected the article creation page, we must actually create a working page with an article creation form
+- We can easily create forms for Models in Django without having to hardcode a lot of HTML from scratch

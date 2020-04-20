@@ -3,6 +3,8 @@ from django.shortcuts import render
 from .models import Article
 # library for sending simple HTTP responses
 from django.http import HttpResponse
+# decorator for denoting views for which login is required
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
@@ -22,3 +24,8 @@ def article_detail(request, slug):
     # we will then use that aricle's information to fill in a template to be returned by this view
     article= Article.objects.get(slug=slug)
     return render(request, 'articles/article_detail.html', {'article': article})
+
+# require login and redirect to login page if not logged in
+@login_required(login_url='accounts:login')
+def article_create(request):
+    return render(request= request, template_name= 'articles/article_create.html')

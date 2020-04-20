@@ -25,5 +25,6 @@ urlpatterns = [
     # parameters are 1. the route string,  2. the view handling the route, and 3. the name for the given URL
     # will be pre-appended with articles/ based on specification in root app's urls.py (see djangonautic/urls.py)
     path('', views.article_list, name="list"),
+    path('create/', views.article_create, name="create"),
     path('<slug:slug>/', views.article_detail, name="detail")
 ]

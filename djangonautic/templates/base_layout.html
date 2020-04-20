@@ -12,6 +12,17 @@
         <div class="wrapper">
             <!-- using template tag to get url based on the name parameter assigned when creating the urls -->
             <h1><a href="{% url 'articles:list' %}"><img src="{% static 'logo.png' %}" alt="Image for link to articles list"></a></h1>
+            <nav>
+                <ul>
+                    <!-- logout button that generates a POSt request -->
+                    <li>
+                        <form class="logout-link" action="{% url 'accounts:logout'%}" method="post">
+                            {% csrf_token %}
+                            <button type="submit" name="logout_button">Logout</button>
+                        </form>
+                    </li>
+                </ul>
+            </nav>
             {% block content%}
             {% endblock %}
         </div>
