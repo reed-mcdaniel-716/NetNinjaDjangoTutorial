@@ -1,6 +1,8 @@
 from django.db import models
 # for snippet function
 import re, string
+# importing User model for author
+from django.contrib.auth.models import User
 
 # Create your models here.
 # extends the Django models.Model class
@@ -13,7 +15,9 @@ class Article(models.Model):
     # auto_now_a=True automatically sets the field to "now" when the object is first created
     date = models.DateTimeField(auto_now_add=True)
     thumb = models.ImageField(default='default.png', blank=True)
-    # add author later
+    # author is link to user who created article
+    # if the author it references is deleted, set the author to the default which is None
+    author= models.ForeignKey(to= User, on_delete= models.SET_DEFAULT, default= None)
 
     # string representation
     def __str__(self):

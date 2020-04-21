@@ -212,3 +212,36 @@
 ## 26. Model Forms
 - Now that we've login-protected the article creation page, we must actually create a working page with an article creation form
 - We can easily create forms for Models in Django without having to hardcode a lot of HTML from scratch
+
+---
+## 27. Foreign Keys
+- We would like to be able to link the author of an article (the logged in user creating it) with the article itself
+- This can be addressed with the use of foreign keys
+- Needed to clear out all existing articles before adding author field
+
+---
+## 28. Checking Login Status
+- We would like to have a navigation bar that is more dynamic and changes based on whether a user is signed in or not
+    - If a user is logged in, they ought to see options for logging out or creating a new article
+    - If a user is logged out, they ought to see options to either login or signup for an account
+
+---
+## 29. Redirecting the Homepage
+- Our homepage is a barebones welcome currently
+- We would like it to be redirected to our article list page
+
+---
+## 30. Styling the App (part 1)
+- Now that our application is functional, wee want it to be aesthetically pleasing as well
+- A cool way to style a page is to use the developer tools you get from inspecting the pages in thee browser to play around with styling, and then copy and paste the final CSS into our `styles.css` file
+- Focusing on styling article list and individual articles in this part
+
+---
+## 31. Styling the App (part 2)
+- Focusing on styling our forms in this part
+
+---
+## 32. Slugify the Title
+- When creating a new article we want the slug field to be pre-populated in the form based on what is input for the article's title
+- To do this we will add a JS script (`slugify.js`) to help
+    - This script is a static file and should therefore be placed in the `assets/` directory

@@ -9,12 +9,12 @@ from django.shortcuts import render
 
 # every View function takes an HttpRequest as an argument
 # and returns a HttpResponse
-def homepage(request):
+'''def homepage(request):
     # plain text response
     # return HttpResponse('homepage')
     # returning render of a template (Django knows to look in templates folder)
     # parameters for render function are 1. the request object and 2. the template name
-    return render(request, 'homepage.html')
+    return render(request, 'homepage.html')'''
 
 
 def about(request):

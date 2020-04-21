@@ -35,7 +35,14 @@ def article_create(request):
         # binding data to forms
         form= forms.CreateArticle(request.POST, request.FILES)
         if form.is_valid():
-            # want to save article to db
+            # This save() method accepts an optional commit keyword argument, which accepts either True or False
+                # If you call save() with commit=False, then it will return an object that hasn’t yet been saved to the database
+                # In this case, it’s up to you to call save() on the resulting model instance.
+            instance= form.save(commit=False)
+            # want to add current user as author for this instance
+            instance.author= request.user
+            # finally save instance to database
+            instance.save()
             return redirect(to= 'articles:list')
     else:
         form= forms.CreateArticle()

@@ -25,17 +25,20 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.conf.urls.static import static
 # importing properties in the settings.py file
 from django.conf import settings
+# want to have access to views from articles app
+from articles import views as article_views
 
 # Remember: Django runs through urls in order until it hits a match, so you want the most general route i.e. the '' route for the homepage, to be last
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path(route= 'admin/', view= admin.site.urls),
     # parameters are 1. the route string and 2. the view handling the route
-    path('about/', views.about),
-    # '' for the homepage
-    path('', views.homepage),
+    path(route= 'about/', view= views.about),
     # any urls defined in articles app will be pre-appended with articles/
-    path('articles/', include('articles.urls', namespace='aricles')),
-    path('accounts/', include('accounts.urls', namespace='accounts'))
+    path(route= 'articles/', view= include('articles.urls', namespace='aricles')),
+    # any urls defined in accounts app will be pre-appended with accounts/
+    path(route= 'accounts/', view= include('accounts.urls', namespace='accounts')),
+    # '' for the homepage
+    path(route= '', view= article_views.article_list, name="home")
 ]
 
 # url for static files
